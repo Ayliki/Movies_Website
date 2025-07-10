@@ -10,6 +10,18 @@
   text-align: center;
 }
 
+.cardButton {
+  border: none;
+}
+
+.cardButton:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.cardButton:focus-visible {
+  outline: 2px solid #646cff;
+}
+
 @media (max-width: 1200px) {
   .container {
     grid-template-columns: repeat(4, 1fr);
