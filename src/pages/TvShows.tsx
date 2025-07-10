@@ -1,8 +1,14 @@
+import { useState } from "react";
 import MediaCard from "../components/MediaCard/MediaCard";
 import { useTvShows } from "../hooks/useTvShows";
 import styles from './../styles/Page.module.css';
+import Details from "../components/Details/Details";
+import Modal from "../components/Modal/Modal";
+import type { TvShow } from "../types/types";
 
 const TvShows = () => {
+    const [selected, setSelected] = useState<TvShow | null>(null);
+
     const { tvShows, loading, error } = useTvShows();
 
     if (loading) {
@@ -13,11 +19,27 @@ const TvShows = () => {
     }
 
     return (
-        <div className={styles.container}>
-            {tvShows.map(tvShow => (
-                <MediaCard key={tvShow.id} item={tvShow} />
-            ))}
-        </div>
+        <>
+            <div className={styles.container}>
+                {tvShows.map(tvShow => (
+                    <div key={tvShow.id}>
+                        <button
+                            onClick={() => setSelected(tvShow)}
+                            className={styles.cardButton}
+                        >
+                            <MediaCard key={tvShow.id} item={tvShow} />
+                        </button>
+                    </div>
+                ))}
+            </div>
+
+            {selected && (
+                <Modal onClose={() => setSelected(null)} >
+                    <Details item={selected} />
+                </Modal>
+            )}
+        </>
+
     )
 }
 

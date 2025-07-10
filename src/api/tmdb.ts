@@ -25,7 +25,7 @@ export async function fetchTrending(): Promise<All[]> {
 
 export async function fetchPopularTvShows(): Promise<TvShow[]> {
     if (!API_KEY) throw new Error('API key is undefined - check your .env and restart dev server');
-    const res = await fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`);
+    const res = await fetch(`${BASE_URL}tv/popular?api_key=${API_KEY}&language=en-US&page=1`);
     if (!res.ok) throw new Error('Failed to fetch');
     const data = await res.json();
     return data.results;

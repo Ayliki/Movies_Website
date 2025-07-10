@@ -1,0 +1,43 @@
+.backDrop {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dialog {
+  background: white;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 90%;
+  max-width: 40rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.close {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.close:focus-visible {
+  outline: 2px solid #646cff;
+}

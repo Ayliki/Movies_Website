@@ -15,6 +15,7 @@ export interface TvShow {
     name: string;
     vote_average: number;
     media_type: 'tv';
+    overview: string;
 }
 
 export type All = Movie | TvShow;
