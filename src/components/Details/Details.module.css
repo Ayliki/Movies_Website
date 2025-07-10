@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  align-items: center;
+  gap: 1rem;
+}
+
+.poster {
+  max-height: 25rem;
+  width: auto;
+  object-fit: cover;
+}
+
+.text {
+  max-width: 40rem;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.date {
+  font-style: italic;
+}
+
+.overview {
+  width: 100%;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
