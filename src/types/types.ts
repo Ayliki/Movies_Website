@@ -19,3 +19,35 @@ export interface TvShow {
 }
 
 export type All = Movie | TvShow;
+
+export interface TmdbACcount {
+    id: number;
+    name: string;
+    username: string;
+    include_adult: boolean;
+    avatar?: {
+        gravatar?: {
+            hash: string;
+        };
+        tmdb?: {
+            avatar_path: string | null;
+        };
+    };
+    iso_639_1: string;
+    iso_3166_1: string;
+}
+
+export interface AuthContextValue {
+    sessionId: string | null;
+    account: TmdbACcount | null;
+    login: () => void;
+    logout: () => void;
+    completeLogin: (requestToken: string) => Promise<void>;
+}
+
+export interface UserInfo {
+    id: number;
+    name: string;
+    username: string;
+    avatarUrl: string | null;
+}

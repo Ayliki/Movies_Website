@@ -4,19 +4,33 @@ import Home from './pages/Home';
 import styles from "./styles.module.css";
 import Movies from './pages/Movies';
 import TvShows from './pages/TvShows';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile/Profile';
+import Login from './pages/Login/Login';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
   return (
     <div className={styles.layout}>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/Movies' element={<Movies />} />
-        <Route path='/TvShows' element={<TvShows />} />
-        <Route path='/Profile' element={<Profile />} />
-      </Routes>
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/movies' element={<Movies />} />
+          <Route path='/tvshows' element={<TvShows />} />
+          <Route
+            path='/profile'
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </AuthProvider>
+
     </div>
   )
 }
