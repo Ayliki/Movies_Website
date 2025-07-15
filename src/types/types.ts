@@ -51,3 +51,9 @@ export interface UserInfo {
     username: string;
     avatarUrl: string | null;
 }
+
+export interface PaginationProps {
+    currentPage: number;
+    totalPages: number;
+    onPageChange: (page: number) => void;
+}

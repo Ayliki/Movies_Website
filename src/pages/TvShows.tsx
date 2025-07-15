@@ -5,11 +5,13 @@ import styles from './../styles/Page.module.css';
 import Details from "../components/Details/Details";
 import Modal from "../components/Modal/Modal";
 import type { TvShow } from "../types/types";
+import Pagination from "../components/Pagination/Pagination";
 
 const TvShows = () => {
     const [selected, setSelected] = useState<TvShow | null>(null);
+    const [page, setPage] = useState(1);
 
-    const { tvShows, loading, error } = useTvShows();
+    const { tvShows, loading, error } = useTvShows(page);
 
     if (loading) {
         return <div className={styles.message}>Loading...</div>;
@@ -20,6 +22,9 @@ const TvShows = () => {
 
     return (
         <>
+            <Pagination totalPages={20} currentPage={page} onPageChange={setPage} />
+
+
             <div className={styles.container}>
                 {tvShows.map(tvShow => (
                     <div key={tvShow.id}>
@@ -32,6 +37,8 @@ const TvShows = () => {
                     </div>
                 ))}
             </div>
+
+            <Pagination totalPages={20} currentPage={page} onPageChange={setPage} />
 
             {selected && (
                 <Modal onClose={() => setSelected(null)} >

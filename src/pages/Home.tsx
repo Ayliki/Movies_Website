@@ -5,11 +5,13 @@ import styles from './../styles/Page.module.css'
 import Modal from '../components/Modal/Modal';
 import Details from '../components/Details/Details';
 import type { All } from '../types/types';
+import Pagination from '../components/Pagination/Pagination';
 
 export default function Home() {
     const [selected, setSelected] = useState<All | null>(null);
+    const [page, setPage] = useState(1);
 
-    const { trending, loading, error } = useTrending();
+    const { trending, loading, error } = useTrending(page);
 
     if (loading) {
         return <div className={styles.message}>Loading…</div>;
@@ -20,6 +22,8 @@ export default function Home() {
 
     return (
         <>
+            <Pagination totalPages={20} currentPage={page} onPageChange={setPage} />
+
             <div className={styles.container}>
                 {trending.map(item => (
                     <div key={item.id}>
@@ -33,6 +37,8 @@ export default function Home() {
 
                 ))}
             </div>
+
+            <Pagination totalPages={20} currentPage={page} onPageChange={setPage} />
 
             {selected && (
                 <Modal onClose={() => setSelected(null)} >
