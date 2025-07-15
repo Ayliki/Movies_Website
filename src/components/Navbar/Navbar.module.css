@@ -1,22 +1,68 @@
-.container {
+.navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #eee;
 }
 
 .logoAndLinks {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
+}
+
+.logoLink {
+  display: inline-flex;
   align-items: center;
 }
 
-.img {
+.logo {
   height: 2rem;
+}
+
+.link {
+  color: #646cff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #535bf2;
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
+}
+
+.searchForm {
+  margin: 0 1.5rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+.profileLink {
+  display: inline-flex;
+  align-items: center;
+}
+
+.profileIcon {
+  height: 2rem;
+  cursor: pointer;
 }
