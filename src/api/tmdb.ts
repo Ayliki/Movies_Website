@@ -5,22 +5,22 @@ const BASE_URL = "https://api.themoviedb.org/3/";
 
 
 // Fetch popular movies
-export async function fetchPopularMovies(): Promise<Movie[]> {
+export async function fetchPopularMovies(page = 1): Promise<Movie[]> {
     if (!API_KEY) {
         throw new Error('API key is undefined – check your .env and restart dev server');
     }
-    const res = await fetch(`${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
+    const res = await fetch(`${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`);
     if (!res.ok) throw new Error('Failed to fetch');
     const data = await res.json();
     return data.results;
 }
 
 // Fetch Trending TvShows/Movies
-export async function fetchTrending(): Promise<All[]> {
+export async function fetchTrending(page = 1): Promise<All[]> {
     if (!API_KEY) {
         throw new Error('API key is undefined - check your .env and restart dev server');
     }
-    const res = await fetch(`${BASE_URL}trending/all/day?api_key=${API_KEY}&language=en-US&originial_language=en`);
+    const res = await fetch(`${BASE_URL}trending/all/day?api_key=${API_KEY}&language=en-US&originial_language=en&page=${page}`);
     if (!res.ok) throw new Error('Failed to fetch');
     const data = await res.json();
     return data.results;
@@ -28,9 +28,9 @@ export async function fetchTrending(): Promise<All[]> {
 
 
 // Fetch popularTvShows
-export async function fetchPopularTvShows(): Promise<TvShow[]> {
+export async function fetchPopularTvShows(page = 1): Promise<TvShow[]> {
     if (!API_KEY) throw new Error('API key is undefined - check your .env and restart dev server');
-    const res = await fetch(`${BASE_URL}tv/popular?api_key=${API_KEY}&language=en-US&page=1`);
+    const res = await fetch(`${BASE_URL}tv/popular?api_key=${API_KEY}&language=en-US&page=${page}`);
     if (!res.ok) throw new Error('Failed to fetch');
     const data = await res.json();
     return data.results;
