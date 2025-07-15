@@ -1,0 +1,31 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80rem;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+  text-align: center;
+}
+
+.message {
+  font-style: italic;
+  color: #666;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(12rem, 1fr));
+  gap: 1.5rem;
+}

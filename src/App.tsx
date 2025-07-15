@@ -8,6 +8,7 @@ import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
+import Search from './pages/Search/Search';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/movies' element={<Movies />} />
           <Route path='/tvshows' element={<TvShows />} />
+          <Route path="/search" element={<Search />} />
           <Route
             path='/profile'
             element={
