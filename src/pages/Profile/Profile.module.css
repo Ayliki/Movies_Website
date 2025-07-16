@@ -1,15 +1,16 @@
 .container {
   margin: 0 auto;
-  max-width: 80rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 90%;
 }
 
 .header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
 }
 
@@ -60,18 +61,33 @@
 .sectionTitle {
   font-size: 1.5rem;
   margin: 0;
+  text-align: center;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  gap: 1.5rem;
-}
-
-.empty,
 .message {
   font-style: italic;
   color: #666;
   text-align: center;
-  padding: 2rem 0;
+  margin: 2rem 0;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 14rem);
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.cardButton {
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.cardButton:focus {
+  outline: none;
 }

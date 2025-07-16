@@ -2,13 +2,15 @@ import { useState } from 'react';
 import MediaCard from '../../components/MediaCard/MediaCard';
 import { useAuth } from '../../hooks/useAuth';
 import styles from './Profile.module.css';
+import { useFavoritesContext } from '../../context/FavoritesContext';
+import Modal from '../../components/Modal/Modal';
+import Details from '../../components/Details/Details';
 import type { All } from '../../types/types';
 
 const Profile = () => {
-    const { user, sessionId, logout } = useAuth();
-    const [favorites, setFavorites] = useState<All[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const { user, logout } = useAuth();
+    const { favorites } = useFavoritesContext();
+    const [selected, setSelected] = useState<All | null>(null);
 
 
     return (
@@ -34,20 +36,29 @@ const Profile = () => {
             {/* Favorites */}
             <section className={styles.section}>
                 <h2 className={styles.sectionTitle}>Your Favorites</h2>
-                {loading ? (
-                    <p className={styles.message}>Loading favorites...</p>
-                ) : error ? (
-                    <p className={styles.message}>Error: {error}</p>
-                ) : favorites.length ? (
+                {favorites.length === 0 ? (
+                    <p className={styles.message}>You haven’t favorited anything yet.</p>
+                ) : (
                     <div className={styles.grid}>
                         {favorites.map(item => (
-                            <MediaCard key={item.id} item={item} />
+                            <button
+                                key={item.id}
+                                onClick={() => setSelected(item)}
+                                className={styles.cardButton}
+                            >
+                                <MediaCard item={item} />
+                            </button>
+
                         ))}
                     </div>
-                ) : (
-                    <p className={styles.empty}>You haven't favorited any movies/tv shows yet</p>
                 )}
             </section>
+
+            {selected && (
+                <Modal onClose={() => setSelected(null)}>
+                    <Details item={selected} />
+                </Modal>
+            )}
         </div>
     )
 }
