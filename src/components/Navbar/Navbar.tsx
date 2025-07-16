@@ -23,6 +23,7 @@ export default function Navbar() {
                 <Link to="/" className={styles.link}>Home</Link>
                 <Link to="/movies" className={styles.link}>Movies</Link>
                 <Link to="/tvshows" className={styles.link}>Tv Shows</Link>
+                <Link to="/favorites" className={styles.link}>Favorites</Link>
             </div>
 
             <div className={styles.actions}>

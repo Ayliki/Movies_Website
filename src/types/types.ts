@@ -57,3 +57,15 @@ export interface PaginationProps {
     totalPages: number;
     onPageChange: (page: number) => void;
 }
+
+export interface FavoriteBody {
+    media_type: 'movie' | 'tv';
+    media_id: number;
+    favorite: boolean;
+}
+
+export interface FavoriteContextType {
+    favorites: All[];
+    addFavorite: (item: All) => Promise<void>;
+    removeFavorite: (item: All) => Promise<void>;
+}
