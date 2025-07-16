@@ -1,4 +1,4 @@
-import type { All, Movie, TmdbACcount, TvShow } from "../types/types";
+import type { All, FavoriteBody, Movie, TmdbACcount, TvShow } from "../types/types";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3/";
@@ -79,4 +79,32 @@ export async function searchMulti(query: string, options?: { signal: AbortSignal
     if (!res.ok) throw new Error('Search failed');
     const data = await res.json();
     return data.results;
+}
+
+export async function fetchFavoriteMovies(accountId: number, sessionId: string, page = 1): Promise<{ results: All[], totalPages: number }> {
+    if (!API_KEY) throw new Error('API key is undefined - check your .env and restart dev server');
+    const res = await fetch(`${BASE_URL}account/${accountId}/favorite/movies?api_key=${API_KEY}&session_id=${sessionId}&language=en-US&page=${page}&sort_by=created_at.asc`);
+    if (!res.ok) throw new Error(`Failed to fetch favorite movies`);
+    const data = await res.json();
+    return { results: data.results, totalPages: data.total_pages };
+}
+
+export async function fetchFavoriteTvShows(accountId: number, sessionId: string, page = 1): Promise<{ results: All[], totalPages: number }> {
+    if (!API_KEY) throw new Error('API key is undefined - check your .env and restart dev server');
+    const res = await fetch(`${BASE_URL}account/${accountId}/favorite/tv?api_key=${API_KEY}&session_id=${sessionId}&language=en-US&page=${page}&sort_by=created_at.asc`);
+    if (!res.ok) throw new Error(`Failed to fetch favorite TV`);
+    const data = await res.json();
+    return { results: data.results, totalPages: data.total_pages };
+}
+
+export async function toggleFavorite(body: FavoriteBody, sessionId: string, accountId: number): Promise<void> {
+    const res = await fetch(
+        `${BASE_URL}account/${accountId}/favorite?api_key=${API_KEY}&session_id=${sessionId}`,
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        }
+    );
+    if (!res.ok) throw new Error(`Failed to toggle favorite`);
 }
