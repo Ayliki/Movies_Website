@@ -10,7 +10,6 @@ import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import Search from './pages/Search/Search';
 import { FavoritesProvider } from './context/FavoritesContext';
-import Favorites from './pages/Favorites/Favorites';
 
 function App() {
 
@@ -24,7 +23,6 @@ function App() {
             <Route path='/movies' element={<Movies />} />
             <Route path='/tvshows' element={<TvShows />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/favorites" element={<Favorites />} />
             <Route
               path='/profile'
               element={
